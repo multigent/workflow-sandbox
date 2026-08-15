@@ -12,7 +12,12 @@ The code is simple enough for agents to change safely, but it has real CI so wor
 
 ## Local Commands
 
+This package has **zero runtime dependencies** and no `package-lock.json`,
+so `npm ci` does NOT apply. Just run the test suite directly with Node 20+:
+
 ```bash
+node --test
+# or equivalently:
 npm test
 ```
 
@@ -22,3 +27,15 @@ npm test
 - Create an issue describing a failing arithmetic edge case.
 - Open a PR that intentionally breaks `npm test`.
 - Open a PR that passes CI and should go to the human merge gate.
+
+## Release Notes Install Template
+
+Use the snippet below in release notes / GitHub Release bodies so users
+do not run `npm ci` against a lockfile-less repo:
+
+```bash
+git clone https://github.com/multigent/workflow-sandbox
+cd workflow-sandbox
+git checkout <TAG>
+npm test
+```
