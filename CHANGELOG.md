@@ -1,3 +1,33 @@
+## [v0.1.3] - 2026-08-15
+
+### Changed
+- Version bump 0.1.1 -> 0.1.3 (hotfix, PATCH, +2).
+- Hotfix routing validation per release_context doc-20260815-05r78x.
+- No content delta from v0.1.1 stable.
+
+### Notes
+- Second hotfix cycle after v0.1.1 stable (first was v0.1.2 routing validation wfr-0ru7cz5m).
+- candidate_ref = fix/release-install-instruction @ 22c15a47, content-equivalent to
+  v0.1.1 cherry-pick 074c77803 (same tree aec4cf76...); no actionable cherry-pick needed.
+- Repository state at trigger time: no [release_blocker] / [hotfix] / [P0] issues,
+  no open PRs requiring urgent fix.
+- prerelease=true per release_context doc hard constraint (candidate verification only).
+- Stable v0.1.3 release is NOT created in this cycle; it must be created by stable_publish
+  node after Human ship_stable decision.
+
+## [v0.1.2] - 2026-08-15
+
+### Changed
+- Version bump 0.1.1 -> 0.1.2 (hotfix, PATCH).
+- Hotfix routing validation only; no content delta from v0.1.1.
+
+### Notes
+- First hotfix cycle after v0.1.1 stable.
+- No new commits cherry-picked; README, src/calculator.js, test/calculator.test.js
+  all identical to v0.1.1 (verified via compare API + content SHA256).
+- Repository state at trigger time had no [release_blocker] / [hotfix] / [P0]
+  labeled issues, no open PRs, no critical bug reports.
+
 ## [v0.1.1] - 2026-08-15
 
 ### Added
