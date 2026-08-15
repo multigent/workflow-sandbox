@@ -13,12 +13,38 @@ export function multiply(a, b) {
   return a * b;
 }
 
+const TITLE_CASE_ACRONYMS = new Set([
+  "api",
+  "url",
+  "http",
+  "https",
+  "json",
+  "yaml",
+  "id",
+  "http2",
+  "ip",
+  "ttl",
+  "sql",
+  "html",
+  "css",
+  "cli",
+  "gui",
+]);
+
+function titleCaseWord(word) {
+  const lower = word.toLowerCase();
+  if (TITLE_CASE_ACRONYMS.has(lower)) {
+    return lower.toUpperCase();
+  }
+  return lower.charAt(0).toUpperCase() + lower.slice(1);
+}
+
 export function titleCase(input) {
   return String(input)
     .trim()
     .split(/\s+/)
     .filter(Boolean)
-    .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase())
+    .map(titleCaseWord)
     .join(" ");
 }
 

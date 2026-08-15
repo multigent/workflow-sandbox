@@ -39,6 +39,30 @@ test("titleCase normalizes whitespace and casing", () => {
   assert.equal(titleCase("  hello   MULTIGENT sandbox "), "Hello Multigent Sandbox");
 });
 
+test("titleCase uppercases a single acronym word", () => {
+  assert.equal(titleCase("api client"), "API Client");
+});
+
+test("titleCase uppercases multiple acronyms in one input", () => {
+  assert.equal(titleCase("api url parser"), "API URL Parser");
+});
+
+test("titleCase returns empty string for empty input", () => {
+  assert.equal(titleCase(""), "");
+});
+
+test("titleCase trims surrounding whitespace and collapses runs", () => {
+  assert.equal(titleCase("   api   client   "), "API Client");
+});
+
+test("titleCase uppercases Id when it is the leading acronym word", () => {
+  assert.equal(titleCase("Id Of A Record"), "ID Of A Record");
+});
+
+test("titleCase preserves casing for acronym matches and lowercases the rest", () => {
+  assert.equal(titleCase("mixed JSON and Api"), "Mixed JSON And API");
+});
+
 test("subtract returns the difference between two numbers", () => {
   assert.equal(subtract(9, 4), 5);
 });
