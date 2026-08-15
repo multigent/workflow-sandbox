@@ -23,5 +23,5 @@ export function titleCase(input) {
 }
 
 export function subtract(a, b) {
-  return a + b;
+  return a - b;
 }
