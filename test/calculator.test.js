@@ -16,7 +16,23 @@ test("divide rejects division by zero", () => {
 });
 
 test("multiply returns the product of two numbers", () => {
-  assert.equal(multiply(4, 3), 12);
+  assert.equal(multiply(3, 4), 12);
+});
+
+test("multiply returns 0 when first argument is zero", () => {
+  assert.equal(multiply(0, 7), 0);
+});
+
+test("multiply returns 0 when second argument is zero", () => {
+  assert.equal(multiply(7, 0), 0);
+});
+
+test("multiply handles a negative first argument", () => {
+  assert.equal(multiply(-2, 5), -10);
+});
+
+test("multiply handles two negative arguments", () => {
+  assert.equal(multiply(-3, -4), 12);
 });
 
 test("titleCase normalizes whitespace and casing", () => {
