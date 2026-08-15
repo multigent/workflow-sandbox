@@ -23,7 +23,7 @@ export function titleCase(input) {
 }
 
 export function subtract(a, b) {
-  return a + b; // E2E intentional failure for QA request_changes
+  return a - b;
 }
 
 export function square(n) {
