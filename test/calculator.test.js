@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { add, divide, multiply, titleCase, subtract } from "../src/calculator.js";
+import { add, divide, multiply, titleCase, subtract, square } from "../src/calculator.js";
 
 test("add returns the sum of two numbers", () => {
   assert.equal(add(2, 3), 5);
@@ -25,4 +25,16 @@ test("titleCase normalizes whitespace and casing", () => {
 
 test("subtract returns the difference between two numbers", () => {
   assert.equal(subtract(9, 4), 5);
+});
+
+test("square returns n * n for positive n", () => {
+  assert.equal(square(5), 25);
+});
+
+test("square returns 0 for n = 0", () => {
+  assert.equal(square(0), 0);
+});
+
+test("square returns positive result for negative n", () => {
+  assert.equal(square(-3), 9);
 });
