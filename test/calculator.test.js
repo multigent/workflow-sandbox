@@ -15,6 +15,39 @@ test("divide rejects division by zero", () => {
   assert.throws(() => divide(1, 0), /division by zero/);
 });
 
+
+test("divide returns a non-integer quotient for normal numbers", () => {
+  assert.equal(divide(5, 2), 2.5);
+});
+
+test("divide returns a negative result when the dividend is negative", () => {
+  assert.equal(divide(-6, 3), -2);
+});
+
+test("divide returns a negative result when the divisor is negative", () => {
+  assert.equal(divide(6, -3), -2);
+});
+
+test("divide returns a positive result when both operands are negative", () => {
+  assert.equal(divide(-6, -3), 2);
+});
+
+test("divide returns 0 when the dividend is 0", () => {
+  assert.equal(divide(0, 7), 0);
+});
+
+test("divide returns the dividend unchanged when the divisor is 1", () => {
+  assert.equal(divide(7, 1), 7);
+});
+
+test("divide handles floating point operands", () => {
+  assert.equal(divide(1.5, 0.5), 3);
+});
+
+test("divide throws an error whose message mentions zero", () => {
+  assert.throws(() => divide(1, 0), /zero/);
+});
+
 test("multiply returns the product of two numbers", () => {
   assert.equal(multiply(3, 4), 12);
 });
