@@ -21,6 +21,27 @@ node --test
 npm test
 ```
 
+### Issue Triage CLI
+
+A fixture-driven triage CLI is provided as `bin/triage.js`. It reads
+`fixtures/issues.json` and produces a deterministic triage recommendation
+for a known issue id, without any LLM or GitHub API calls.
+
+```bash
+# Show triage recommendation for a single issue id.
+npm run triage -- 39
+# -> {"priority":"P3","type":"develop","nextAction":"implement (feature)","rationale":"..."}
+
+# List every fixture id and title.
+npm run triage -- --list
+# -> 39\tAdd issue triage fixture command
+# -> 40\tCalculator throws on negative input that overflows
+# -> ...
+```
+
+Unknown ids exit `1` with `unknown issue id: <id>` on stderr; calling the
+CLI with no args exits `2` and prints a usage line.
+
 ## Test Ideas
 
 - Create an issue asking to add a new string helper.
