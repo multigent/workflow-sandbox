@@ -16,7 +16,7 @@ const SEVERITY_TO_PRIORITY = {
 };
 
 const PRIORITIES = new Set(["P0", "P1", "P2", "P3"]);
-const TYPES = new Set(["develop", "answer", "defer", "close"]);
+const TYPES = new Set(["develop", "answer", "defer", "close", "needs-info"]);
 
 function priorityFromSeverity(severity) {
   return SEVERITY_TO_PRIORITY[severity] ?? "P3";
@@ -43,12 +43,12 @@ function validateIssue(issue) {
  * triage(issue) -> { priority, type, nextAction, rationale }
  *
  * Rule precedence (first match wins):
- *   1. question          -> answer / P3
- *   2. chore (sev!=high) -> defer  / P3
- *   3. bugfix + repro    -> develop / P0
- *   4. bugfix no repro   -> develop / P1 (request repro first)
+ *   1. question          -> answer    / P3
+ *   2. chore (sev!=high) -> defer     / P3
+ *   3. bugfix + repro    -> develop   / P0
+ *   4. bugfix no repro   -> needs-info / P1 (collect repro first)
  *   5. feature/enhancement + acceptance_fit -> develop / severity->priority
- *   6. fallback          -> close   / P3
+ *   6. fallback          -> close     / P3
  */
 export function triage(issue) {
   validateIssue(issue);
@@ -89,10 +89,10 @@ export function triage(issue) {
   if (t === "bugfix" && issue.has_repro !== true) {
     return {
       priority: "P1",
-      type: "develop",
-      nextAction: "request repro then fix",
+      type: "needs-info",
+      nextAction: "collect repro from reporter",
       rationale: trimRationale(
-        "bugfix without repro → P1; ask reporter for repro first",
+        "bugfix without repro → P1 needs-info; collect repro before fix",
       ),
     };
   }
