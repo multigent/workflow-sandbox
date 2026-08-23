@@ -1,0 +1,92 @@
+{
+  "issues": [
+    {
+      "id": "39",
+      "title": "Add issue triage fixture command",
+      "type": "feature",
+      "labels": ["feature", "good first issue", "sandbox"],
+      "severity": "low",
+      "area": "cli",
+      "has_repro": false,
+      "acceptance_fit": true,
+      "notes": "PM approved; needs fixture-driven CLI, tests, README."
+    },
+    {
+      "id": "40",
+      "title": "Calculator throws on negative input that overflows",
+      "type": "bugfix",
+      "labels": ["bug"],
+      "severity": "high",
+      "area": "calculator",
+      "has_repro": true,
+      "acceptance_fit": true,
+      "notes": "Reproducible on Node 20.11; linked failing test case in issue."
+    },
+    {
+      "id": "41",
+      "title": "CLI returns wrong exit code on cancellation",
+      "type": "bugfix",
+      "labels": ["bug"],
+      "severity": "medium",
+      "area": "cli",
+      "has_repro": false,
+      "acceptance_fit": true,
+      "notes": "User reports wrong exit code; needs repro before fix."
+    },
+    {
+      "id": "42",
+      "title": "How do I run the release dry-run locally?",
+      "type": "question",
+      "labels": ["question", "docs"],
+      "severity": "low",
+      "area": "docs",
+      "has_repro": false,
+      "acceptance_fit": true,
+      "notes": "Newcomer question about local release process."
+    },
+    {
+      "id": "43",
+      "title": "Bump internal helper imports for readability",
+      "type": "chore",
+      "labels": ["chore", "cleanup"],
+      "severity": "low",
+      "area": "internal",
+      "has_repro": false,
+      "acceptance_fit": true,
+      "notes": "Pure cleanup; can be deferred to next cleanup sprint."
+    },
+    {
+      "id": "44",
+      "title": "Refactor error helpers to a single module",
+      "type": "enhancement",
+      "labels": ["enhancement", "cleanup"],
+      "severity": "medium",
+      "area": "internal",
+      "has_repro": false,
+      "acceptance_fit": true,
+      "notes": "Acknowledged improvement; mid-term."
+    },
+    {
+      "id": "45",
+      "title": "Outdated sandbox doc comment",
+      "type": "chore",
+      "labels": ["chore", "docs"],
+      "severity": "high",
+      "area": "docs",
+      "has_repro": false,
+      "acceptance_fit": true,
+      "notes": "High-severity docs rot blocking release notes."
+    },
+    {
+      "id": "46",
+      "title": "Exploratory: maybe use ESM loader hooks",
+      "type": "feature",
+      "labels": ["feature", "exploration"],
+      "severity": "low",
+      "area": "core",
+      "has_repro": false,
+      "acceptance_fit": false,
+      "notes": "Speculative proposal without acceptance criteria yet."
+    }
+  ]
+}
