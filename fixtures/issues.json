@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "title": "Add a string helper for trimming runs of whitespace",
+    "state": "open",
+    "body": "We need a small utility that collapses internal whitespace runs in arbitrary input strings. The CLI layer should be able to call it directly without going through a build step.\n\nAcceptance:\n- one entry point, no new deps\n- covered by node:test",
+    "labels": ["enhancement", "good first issue"],
+    "author": "alice",
+    "createdAt": "2026-01-04T10:15:00Z"
+  },
+  {
+    "id": "2",
+    "title": "Fix arithmetic edge case for negative divisor",
+    "state": "closed",
+    "body": "When the divisor is negative, the result should still respect the sign rules. Please verify with a small set of unit tests before closing.",
+    "labels": ["bug", "cli"],
+    "author": "bob",
+    "createdAt": "2026-02-19T08:42:11Z"
+  },
+  {
+    "id": "3",
+    "title": "Document the sandbox CLI in the README",
+    "state": "open",
+    "body": "Future agents need a quick way to read sample issues without hitting the GitHub API. Add a `node src/issues.js list|show <id>` entry point that reads from a local fixture file.\n\nOut of scope: live GitHub API integration, auth, web UI.",
+    "labels": ["documentation", "cli", "enhancement"],
+    "author": "carol",
+    "createdAt": "2026-03-02T17:05:30Z"
+  },
+  {
+    "id": "4",
+    "title": "Investigate flaky behavior in CI for divide helper",
+    "state": "open",
+    "body": "A recent run reported an intermittent failure when divide was called with arguments close to the JS number boundary. Reproduce locally and decide whether the fix belongs in the helper or in the test harness.",
+    "labels": ["bug", "ci"],
+    "author": "dave",
+    "createdAt": "2026-04-11T22:58:07Z"
+  },
+  {
+    "id": "5",
+    "title": "Archive legacy v0.1.x release notes",
+    "state": "closed",
+    "body": "Move the v0.1.x release notes out of the main README so the workflow section stays focused. Keep them reachable from a historical link.",
+    "labels": ["docs", "release"],
+    "author": "alice",
+    "createdAt": "2026-05-30T13:00:00Z"
+  }
+]
