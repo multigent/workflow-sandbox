@@ -21,6 +21,49 @@ node --test
 npm test
 ```
 
+## Issue Fixture CLI
+
+A tiny fixture-based issue viewer lives at `src/issues.js`. It reads
+`fixtures/issues.json` (no GitHub API, no auth) so workflow tests can
+exercise issue-shaped data without any external calls.
+
+### List issues
+
+```bash
+node src/issues.js list            # human table
+node src/issues.js list --json     # JSON array for agents / pipelines
+```
+
+`list` prints the columns `ID`, `STATE`, `LABELS`, `TITLE`. The
+`--json` flag emits a single valid JSON array, one issue per element.
+
+### Show one issue
+
+```bash
+node src/issues.js show <id>
+```
+
+Prints a human-readable block including the body. If the id is unknown
+the command exits non-zero and writes `error: issue <id> not found` to
+stderr.
+
+### Fixture schema
+
+Each entry in `fixtures/issues.json` must include:
+
+| field        | type     | notes                           |
+|--------------|----------|---------------------------------|
+| `id`         | string   | unique within the file          |
+| `title`      | string   | short summary                   |
+| `state`      | string   | `open` or `closed`              |
+| `body`       | string   | long description / acceptance   |
+| `labels`     | string[] | zero or more labels             |
+| `author`     | string   | login or display name           |
+| `createdAt`  | string   | ISO 8601 timestamp              |
+
+The loader validates these fields at startup so a malformed fixture
+fails fast with a clear error.
+
 ## Test Ideas
 
 - Create an issue asking to add a new string helper.
