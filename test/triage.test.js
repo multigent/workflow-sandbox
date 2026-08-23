@@ -69,11 +69,11 @@ test("triage: bugfix with repro -> P0 develop", () => {
   assert.match(result.rationale, /P0/);
 });
 
-test("triage: bugfix without repro -> P1 develop with repro request", () => {
+test("triage: bugfix without repro -> P1 needs-info (block dev on repro)", () => {
   const issue = { type: "bugfix", severity: "medium", has_repro: false, acceptance_fit: true };
   const result = triage(issue);
   validateTriageResult(result);
-  assert.equal(result.type, "develop");
+  assert.equal(result.type, "needs-info");
   assert.equal(result.priority, "P1");
   assert.match(result.nextAction, /repro/i);
 });
@@ -120,6 +120,17 @@ test("triage: rationale never exceeds 120 chars", () => {
     const result = triage(issue);
     assert.ok(result.rationale.length <= 120, `too long: ${result.rationale}`);
   }
+});
+
+test("triage: bugfix without repro uses the new needs-info branch (regression)", () => {
+  // Regression guard for #42: previously this branch returned type=develop,
+  // which a maintainer could misread as "start coding now". The PM verdict
+  // (msg-20260823-trjijr) is: type=needs-info, nextAction collects repro.
+  const issue = { type: "bugfix", severity: "medium", has_repro: false, acceptance_fit: true };
+  const result = triage(issue);
+  assert.notEqual(result.type, "develop", "regression: must not be develop");
+  assert.equal(result.type, "needs-info");
+  assert.equal(result.nextAction, "collect repro from reporter");
 });
 
 // ---------- pure function: errors ----------

@@ -39,6 +39,17 @@ npm run triage -- --list
 # -> ...
 ```
 
+Rule precedence (first match wins) lives in `src/triage.js`:
+
+| # | Condition                           | `type`       | `priority` | `nextAction`                       |
+|---|-------------------------------------|--------------|------------|------------------------------------|
+| 1 | `type === "question"`               | `answer`     | `P3`       | answer in thread                   |
+| 2 | `type === "chore"` && sev != high   | `defer`      | `P3`       | park for later cleanup sprint      |
+| 3 | `type === "bugfix"` && `has_repro`  | `develop`    | `P0`       | fix immediately                    |
+| 4 | `type === "bugfix"` && !`has_repro` | `needs-info` | `P1`       | collect repro from reporter        |
+| 5 | `feature`/`enhancement` + `acceptance_fit` | `develop` | sev → prio  | implement                          |
+| 6 | fallback                            | `close`      | `P3`       | close as not planned               |
+
 Unknown ids exit `1` with `unknown issue id: <id>` on stderr; calling the
 CLI with no args exits `2` and prints a usage line.
 
